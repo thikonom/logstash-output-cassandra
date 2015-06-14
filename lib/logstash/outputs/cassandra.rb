@@ -12,13 +12,13 @@ class LogStash::Outputs::Cassandra < LogStash::Outputs::Base
   config :table, :validate => :string, :required => true
 
   # Cluster connection options
-  # If no connection optiosn provided, connects to localhost by default
+  # If no connection options provided, connects to localhost by default
   # (See http://datastax.github.io/ruby-driver/api/#cluster-class_method
-  # for the list of options)
+  # for the full list of options)
   config :connection_options, :validate => :hash
 
   # A mapping from event fields to column names
-  config :event_schema, :validate => :hash
+  config :event_schema, :validate => :hash, :required => true
 
   # Index tables for efficient searching of the data
   # The index table should include only two fields the event_id (by default)
@@ -63,5 +63,5 @@ class LogStash::Outputs::Cassandra < LogStash::Outputs::Base
       end
     end
 
-  end # def event
-end # class LogStash::Outputs::Example
+  end # def receive
+end # class LogStash::Outputs::Cassandra
